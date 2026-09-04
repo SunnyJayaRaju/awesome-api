@@ -1,189 +1,149 @@
-# Awesome API [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome) [![Build Status](https://img.shields.io/travis/Kikobeats/awesome-api/master.svg?style=flat-square)](https://travis-ci.org/Kikobeats/awesome-api)
+# 📐 Awesome REST API Design
 
-> A curated list of awesome resources for design and implement RESTful APIs.
+![Status](https://img.shields.io/badge/Status-Active_Curation-brightgreen?style=for-the-badge&logo=github&logoColor=white)
+![Maintainer](https://img.shields.io/badge/Maintainer-SunnyJayaRaju-orange?style=for-the-badge)
 
-## Design
+> **Personal, opinionated notes on REST API design — resources, patterns, and tools I've actually applied.**  
+> This started as a fork of [Kikobeats/awesome-api](https://github.com/Kikobeats/awesome-api) — now maintained as my own curated reference.
 
-### Overview
+---
 
-> REST allows us to create services and applications that can be used by any device or client who understands HTTP.
+## 🎯 Why This Exists
 
-* [Best Practices for Designing a Pragmatic RESTful API](http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api) [[spanish version](https://elbauldelprogramador.com/buenas-practicas-para-el-diseno-de-una-api-restful-pragmatica/)].
-* [Ideal REST API Design](https://betimdrenica.wordpress.com/2015/03/09/ideal-rest-api-design/).
-* [StackOverflow best REST API Design](https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/).
-* [Heroku API Reference](https://devcenter.heroku.com/articles/platform-api-reference).
-* [API Terms Glossary](https://github.com/Mashape/apiglossary).
-* [HTTP API Design by Heroku](https://github.com/interagent/http-api-design).
-* [Learn REST: A RESTful Tutorial](http://www.restapitutorial.com).
-* [RAPIS: A REST API Standard for the 21th century](https://github.com/lambda2/rapis).
-* [IBM Watson REST API Guidelines](https://github.com/watson-developer-cloud/api-guidelines).
-* [Microsoft REST API Guidelines](https://github.com/Microsoft/api-guidelines).
-* [Zalando RESTful API and Event Scheme Guidelines](http://zalando.github.io/restful-api-guidelines/)
-* [gov.uk API technical and data standards](https://www.gov.uk/guidance/gds-api-technical-and-data-standards)
-* [How to (and how not to) design REST APIs](https://github.com/stickfigure/blog/wiki/How-to-%28and-how-not-to%29-design-REST-APIs)
+The original list is a broad directory of everything API-related. That's great for browsing, not for daily decisions.  
+I needed a focused set: design guidelines I've followed, status codes I actually return, auth flows I've implemented, tools I reach for.
 
-### Status Code
+> **"If I've written it, reviewed it, or debugged it in prod, it's here. If not, it's not."**
 
-> When you are using a REST design you have to provide the HTTP status code that are the more appropriated to respond to the request.
+---
 
-* [HTTP Status code table in RESTAPITutorial](http://www.restapitutorial.com/httpstatuscodes.html).
-* [httpstatuses.com](https://httpstatuses.com/)
-* [Status code definition in W3C](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
-* [HTTP Status Code Guides](https://tryhexadecimal.com/guides/http/)
+## 🗂️ Table of Contents
 
-### Authentication
+- [📋 Design Principles & Guidelines](#-design-principles--guidelines)
+- [🔢 HTTP Status Codes](#-http-status-codes)
+- [🔐 Authentication & Authorization](#-authentication--authorization)
+- [📝 Specification & Documentation](#-specification--documentation)
+- [🧪 Testing & Debugging](#-testing--debugging)
+- [🛡️ Security & Governance](#%EF%B8%8F-security--governance)
+- [⚙️ CLI & Automation](#%EF%B8%8F-cli--automation)
+- [🔗 Connected Repos](#-connected-repos)
 
-* [Auth Boss](https://github.com/teesloane/Auth-Boss) – Learn about different authentication methodologies on the web.
-* [Authentication Cheat Sheet](https://www.owasp.org/index.php/Authentication_Cheat_Sheet).
-* [The Problem With API Authentication in Express](https://stormpath.com/blog/the-problem-with-api-authentication-in-express/).
-* [Web Authentication Methods Explained](https://blog.risingstack.com/web-authentication-methods-explained/).
+---
 
-#### JWT
+## 📋 Design Principles & Guidelines
 
-> JSON Web Token (JWT) is a compact, URL-safe means of representing claims to be transferred between two parties.
+| Resource | Category | My Take |
+|----------|----------|---------|
+| **[Google API Design Guide](https://cloud.google.com/apis/design/)** | Enterprise Standard | My north star. Resource-oriented, predictable patterns, versioning via URL. Apigee enforces this by default. |
+| **[Microsoft REST API Guidelines](https://github.com/Microsoft/api-guidelines/blob/master/Guidelines.md)** | Enterprise Standard | Comprehensive. Naming, versioning, pagination, error formats — maps cleanly to OpenAPI. |
+| **[Zalando RESTful API Guidelines](https://zalando.github.io/restful-api-guidelines/)** | Open Standard | Concise, opinionated. Great for teams wanting a lighter baseline than Google/Microsoft. |
+| **[Heroku HTTP API Design](https://github.com/interagent/http-api-design)** | Practical Patterns | Battle-tested conventions. Request IDs, ETags, rate-limit headers — the "real world" details. |
+| **[Vinay Sahni's Pragmatic REST](https://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api)** | Quick Reference | One-page checklist. Good for code reviews: plural nouns, proper nesting, verbs in HTTP not URLs. |
 
-* [10 Things You Should Know about Tokens](https://auth0.com/blog/2014/01/27/ten-things-you-should-know-about-tokens-and-cookies/).
-* [Cookies vs Tokens](https://auth0.com/blog/2014/01/07/angularjs-authentication-with-cookies-vs-token/).
-* [JWT Draft in IETF](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token).
-* [JWT.io](http://jwt.io/).
-* [Using JSON Web Tokens as API Keys](https://auth0.com/blog/2014/12/02/using-json-web-tokens-as-api-keys/).
-* [Why Meteor doesn't use session cookies](http://info.meteor.com/blog/session-cookies).
-* [Guide on API authentication and authorization](https://www.moesif.com/blog/technical/restful-apis/Authorization-on-RESTful-APIs/).
+---
 
-### Authorization
+## 🔢 HTTP Status Codes
 
-#### OAuth
+| Resource | Category | My Take |
+|----------|----------|---------|
+| **[HTTP Status Codes Reference](https://httpstatuses.com/)** | Quick Lookup | Clean, searchable. My go-to when I forget 422 vs 400 or 409 vs 412. |
+| **[REST API Tutorial Status Codes](https://www.restapitutorial.com/httpstatuscodes.html)** | Context + Examples | Groups by semantics (success, redirect, client error, server error) with REST-specific guidance. |
+| **[MDN HTTP Status](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)** | Authoritative | Browser-vendor backed. Use when you need the exact RFC wording. |
 
-> An open protocol to allow secure authorization in a simple and standard method from web, mobile and desktop applications
+**Codes I actually return:** `200`, `201`, `204`, `400`, `401`, `403`, `404`, `409`, `422`, `429`, `500`, `503` — the rest are edge cases.
 
-* [The OAuth Bible by Mashape](https://github.com/Kong/mashape-oauth/blob/master/FLOWS.md).
+---
 
-## Caching
+## 🔐 Authentication & Authorization
 
-* [Caching best practices & max-age gotchas](https://jakearchibald.com/2016/caching-best-practices/).
-* [Increasing Application Performance with HTTP Cache Headers](https://devcenter.heroku.com/articles/increasing-application-performance-with-http-cache-headers).
-* [Using Cloudflare with your API](https://support.cloudflare.com/hc/en-us/articles/200504045-Using-Cloudflare-with-your-API).
+| Resource | Category | My Take |
+|----------|----------|---------|
+| **[OAuth 2.0 RFC 6749](https://datatracker.ietf.org/doc/html/rfc6749)** | Spec | Dense but definitive. Authorization Code + PKCE for SPAs, Client Credentials for M2M, Device Code for CLIs. |
+| **[OpenID Connect Core](https://openid.net/specs/openid-connect-core-1_0.html)** | Identity Layer | Adds `id_token`, `UserInfo` endpoint, discovery. Use when you need identity, not just access. |
+| **[JWT RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519)** | Token Format | Stateless claims. Validate `exp`, `nbf`, `iss`, `aud` in gateway — never trust blindly. |
+| **[OWASP Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html)** | Security Baseline | Password rules, MFA, session mgmt, brute-force protection. Checklist for every auth review. |
+| **[Apigee OAuthV2 Policy](https://cloud.google.com/apigee/docs/reference/policies/oauth-v2-policy)** | Gateway Implementation | Native token mint/validate/introspect. Revokes, TTLs, scopes — all declarative in the proxy. |
 
-## Security
+---
 
-* [Helmet, help secure Express/Connect apps with various HTTP headers](https://www.npmjs.com/package/helmet).
-* [APISecurityBestPractices](https://github.com/GitGuardian/APISecurityBestPractices).
-* [Node Security Project](https://nodesecurity.io/).
-* [Node.js Security Checklist](https://blog.risingstack.com/node-js-security-checklist/).
+## 📝 Specification & Documentation
 
-## Format
+| Tool | Category | My Take |
+|------|----------|---------|
+| **[OpenAPI 3.1](https://spec.openapis.org/oas/v3.1.0)** | Spec Standard | Single source of truth. Generates clients, docs, mocks, tests, gateway config. Don't hand-write — design in Stoplight, export. |
+| **[Stoplight Studio](https://stoplight.io/open-source/studio)** | Visual Editor | Git-backed, real-time linting (Spectral), renders beautifully. Best authoring experience I've found. |
+| **[Spectral](https://meta.stoplight.io/spectral/)** | Linter | Enforce style (naming, required fields, examples) in CI. Extensible rulesets — add your org conventions. |
+| **[Redoc](https://redocly.github.io/redoc/)** | Reference Docs | Three-panel, searchable, code samples in 10+ langs. `redocly preview-docs` = instant local feedback. |
+| **[Postman Collections](https://www.postman.com/)** | Runnable Docs | Share executable examples with non-engineers. `newman run` in CI = contract tests. |
 
-* [HAL](http://stateless.co/hal_specification.html) – Simple format that gives a consistent and easy way to hyperlink between resources in your API (see: [HATEOAS](#hateoas)).
-* [Hydra](http://www.hydra-cg.com/) – Vocabulary for Hypermedia-Driven Web APIs (W3C).
-* [JSend](http://labs.omniti.com/labs/jsend) – Simple specification that lays down some rules for how JSON responses from web servers should be formatted.
-* [JSON API](http://jsonapi.org/) – Standard for building APIs in JSON.
-* [JSON-LD](http://json-ld.org/) – Standard for describing Linked Data and hypermedia relations in JSON (W3C).
-* [OData](http://www.odata.org/) – Open protocol to allow the creation and consumption of queryable and interoperable RESTful APIs. Quite complex.
-* [RAML](http://raml.org/) – Simple and succinct way to describe RESTful API.
-* [Schema.org](http://schema.org) – Collection of schemas describing common data models.
+---
 
-## Discover
+## 🧪 Testing & Debugging
 
-> Need a API for your projects?
+| Tool | Category | My Take |
+|------|----------|---------|
+| **[HTTPie](https://httpie.io/)** | CLI Client | `http GET :8080/api/users Authorization:"Bearer $TOKEN"` — readable, colorized, sensible defaults. |
+| **[Postman](https://www.postman.com/)** | Collection Runner | Variables, environments, pre-request scripts. Newman + JUnit reporter = pipeline gate. |
+| **[Mockoon](https://mockoon.com/)** | Local Mock Server | Import OpenAPI, customize responses, proxy mode for partial mocks. Zero config, runs offline. |
+| **[Reqres](https://reqres.in/)** | Hosted Sandbox | Instant live endpoint for smoke tests. No auth, no setup, CORS enabled. |
+| **[OWASP ZAP](https://www.zaproxy.org/)** | Security Scanner | Baseline scan on every PR. Finds injection, broken auth, sensitive data exposure. |
 
-### Curated list
+---
 
-* [Awesome APIs Directory](https://github.com/Abhishaker17/Awesome-APIs) – A public list of APIs from round the web.
-* [public apis](https://github.com/toddmotto/public-apis) – A collective list of public JSON APIs for use in web development.
+## 🛡️ Security & Governance
 
-### Directory
+| Tool | Category | My Take |
+|------|----------|---------|
+| **[Spectral](https://meta.stoplight.io/spectral/)** | Design Governance | Enforce OpenAPI rules (required `examples`, no `anyOf`, proper `error` schemas) in PR checks. |
+| **[OWASP API Security Top 10](https://owasp.org/www-project-api-security/)** | Threat Model | BOLA, broken auth, excessive data exposure — map each to gateway policies (rate limit, field masking, scope checks). |
+| **[Apigee SpikeArrest / Quota](https://cloud.google.com/apigee/docs/reference/policies/spike-arrest-policy)** | Runtime Protection | SpikeArrest = smooth traffic (per-second), Quota = business limits (per-minute/hour/day). Use both. |
+| **[mTLS](https://cloud.google.com/apigee/docs/api-platform/security/mtls)** | Zero-Trust Transport | Service-to-service cert validation. Apigee `TargetEndpoint` `SSLInfo` + KVM certs = no shared secrets. |
 
-* [apis.io](http://apis.io) – API Search service to help discover APIs on the web.
-* [ProgrammableWeb](https://www.programmableweb.com/apis/directory).
+---
 
-## Testing
+## ⚙️ CLI & Automation
 
-### Querying
+| Tool | Category | My Take |
+|------|----------|---------|
+| **[jq](https://stedolan.github.io/jq/)** | JSON Processor | `curl -s $URL | jq '.data[] | select(.status=="active") | .id'` — the universal API data knife. |
+| **[httpie](https://httpie.io/)** | HTTP CLI | `http --print=hb POST $URL token=$TOKEN` — cleaner than curl for headers + body. |
+| **[newman](https://github.com/postmanlabs/newman)** | CI Runner | `newman run collection.json -e env.json --reporters cli,junit` — JUnit XML for any CI. |
+| **[redocly-cli](https://redocly.com/docs/cli/)** | Spec Pipeline | `redocly lint spec.yaml && redocly bundle spec.yaml -o bundle.yaml` — validate + bundle in CI. |
+| **[apigeecli](https://github.com/apigee/apigeecli)** | Apigee Automation | Deploy proxies, manage KVMs, create products — all from terminal. Replaces Maven plugin. |
 
-* [Firecamp](https://firecamp.io) – Protocol agnostic API testing client which help you test and manage RestAPIs, GraphQL, Websocket and many more.
-* [httpie](https://github.com/jkbrzt/httpie) – Command line HTTP client, far more dev-friendly than `curl`.
-* [HttpMaster](http://www.httpmaster.net) – GUI tool for testing REST APIs and services. Windows OS only.
-* [jq](https://github.com/stedolan/jq) – Command line JSON processor, to use in combination with a command-line HTTP client like cURL.
-* [Insomina](https://insomnia.rest/) – A Fancy HTTP REST Client.
-* [resty](https://github.com/micha/resty) – Little command line REST client that you can use in pipelines (bash or zsh).
-* [TestMace](https://testmace.com) – A modern powerful crossplatform tool for working with API and creating automated API tests.
+---
 
-### Mocking
+## 🔗 Connected Repos
 
-* [Beeceptor](https://beeceptor.com) - Beeceptor helps intercepting API calls and mocking them selectively. Creates an endpoint for wrapping original API and routes requests.
-* [FakeRest](https://github.com/marmelab/FakeRest) – Patch XMLHttpRequest to fake a REST API client-side.
-* [JSON Placeholder](http://jsonplaceholder.typicode.com/) – Free online REST service that you can use whenever you need some fake data.
-* [json-server](https://github.com/typicode/json-server) – Get a full fake REST API with zero coding in less than 30 seconds.
-* [Mocky.io](http://www.mocky.io/) – Free online service to create fake HTTP responses.
-* [FakeQL](https://fakeql.com/) – Mainly focused on GraphQL, but can mock RESTful APIs, as well.
-* [PIPL API](https://pipl.ir) – Free and public API that generates random and fake people's data in JSON
-* [API Mocha](https://apimocha.com) - Free online service providing fake REST API endpoints, create customizable responses and download rules as a Postman collection.
-### Response
+This list lives alongside my hands-on work:
 
-* [httpstat.us](https://httpstat.us) – A super simple service for generating different HTTP codes.
-* [httpbin](https://httpbin.org) – httpbin(1): HTTP Request & Response Service.
-* [badssl](https://badssl.com) – Testing clients against bad SSL configs.
+| Repo | Purpose |
+|------|---------|
+| **[Apigee-Lab](https://github.com/SunnyJayaRaju/Apigee-Lab)** | Production-style Apigee proxies (JWT, Caching, FaultRules, ServiceCallouts) |
+| **[Curious-Explorer](https://github.com/SunnyJayaRaju/Curious-Explorer)** | Concept index: "Waiter vs Kitchen" (proxies), "Hotel Key Card" (OAuth), "Bouncer vs Bartender" (SpikeArrest vs Quota) |
+| **[Awesome-Api-Management-Tools](https://github.com/SunnyJayaRaju/Awesome-Api-Management-Tools)** | Curated gateway/tooling list: Apigee, Kong, Spectral, apigeelint, Redoc, etc. |
 
-## Documentation
+---
 
-> One of the most important part of your API is have a good documentation and updated with the code.
+## 🧭 How I Evaluate Resources
 
-### Free
+1. **Does it solve a real design decision I face?** (Not academic purity)
+2. **Can I apply it in a gateway/proxy today?** (Not "someday")
+3. **Is the mental model learnable in an afternoon?** (If not, it's a liability)
+4. **Does it survive a 2 AM debug session?** (Clear errors, escape hatches, good logs)
+5. **Does it play nice with GitOps?** (Declarative, diffable, reviewable)
 
-* [docbox](https://github.com/tmcw/docbox).
-* [slate](https://github.com/tripit/slate).
-* [whiteboard](https://github.com/mpociot/whiteboard).
+---
 
-### Services
+## 📝 Changelog
 
-* [RapidAPI](https://docs.rapidapi.com/docs).
-* [Readme.io](https://readme.io/).
-* [GitBook](https://www.gitbook.com/).
+- **2026-09-04** — Initial rewrite: fork → personal curated REST API design notes. Trimmed 180+ lines to ~160 focused entries.
 
-## Logging
+---
 
-* [PM2 by keymetrics](https://pm2.keymetrics.io).
-* [morgan for expressjs](https://github.com/expressjs/morgan).
-* [Moesif API Analytics](https://www.moesif.com/features/api-logs). Log and Understand API Traffic.
+## 🙏 Attribution
 
-## Modeling and SaaS
+Original list © 2016+ [Kikobeats](https://github.com/Kikobeats) (MIT).  
+This curated version © 2026 [SunnyJayaRaju](https://github.com/SunnyJayaRaju) — same license, new voice.
 
-> Based in DDD (Domain Driven Development). Generates automatically API's in different languages.
-
-* [Alteranatives to API Plug](https://www.producthunt.com/alternatives/api-plug) – 9 alternative and related products to api plug.
-* [Apiary](https://apiary.io/) – Collaborative design, instant API mock, generated documentation, integrated code samples, debugging and automated testing.
-* [wrapAPI, Build an API on top of any website](https://wrapapi.com).
-* [import.io, turn web pages into Data](https://www.import.io/).
-* [RAML, RESTful API Modeling Language](http://raml.org).
-* [Runscope](https://www.runscope.com/) – Automated API Monitoring & Testing.
-* [swagger.io](http://swagger.io).
-
-## Libraries
-
-> Used it to improve your workflow
-
-* [async-ratelimiter](https://github.com/microlinkhq/async-ratelimiter) – Rate limit made simple, easy, async, backed in Redis.
-* [hashids](https://github.com/niieani/hashids.js) – A small JavaScript library to generate YouTube-like ids from numbers.
-* [typeid-js](https://github.com/jetify-com/typeid-js) – Type-safe, K-sortable, and globally unique identifiers inspired by Stripe IDs
-
-## Frameworks
-
-> Designed specifically for building RESTful API's Quickly.
-
-* [Loopback](http://loopback.io).
-* [Sails.js](http://sailsjs.org).
-* [FastAPI](https://github.com/tiangolo/fastapi).
-* [rest-hapi](https://resthapi.com).
-
-## Gateways
-
-> Manage API infrastructure concerns such as authentication/authorization, rate limiting, scaling, analytics, etc.
-
-### Open Source / Self-hosted
-
-* [API Umbrella](http://apiumbrella.io/).
-* [ApiAxle](http://apiaxle.com).
-* [KrakenD](http://krakend.io).
-* [Mashape Kong](https://getkong.org/).
-* [Tyk](https://tyk.io/).
-* [WSO2 API Manager](http://wso2.com/api-management/try-it/).
+> *Curated with 🧠 by someone who learns by breaking things in staging first.*
