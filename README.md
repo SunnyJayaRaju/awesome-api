@@ -62,7 +62,7 @@ I needed a focused set: design guidelines I've followed, status codes I actually
 | **[OpenID Connect Core](https://openid.net/specs/openid-connect-core-1_0.html)** | Identity Layer | Adds `id_token`, `UserInfo` endpoint, discovery. Use when you need identity, not just access. |
 | **[JWT RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519)** | Token Format | Stateless claims. Validate `exp`, `nbf`, `iss`, `aud` in gateway — never trust blindly. |
 | **[OWASP Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html)** | Security Baseline | Password rules, MFA, session mgmt, brute-force protection. Checklist for every auth review. |
-| **[Apigee OAuthV2 Policy](https://cloud.google.com/apigee/docs/reference/policies/oauth-v2-policy)** | Gateway Implementation | Native token mint/validate/introspect. Revokes, TTLs, scopes — all declarative in the proxy. |
+| **[Apigee OAuthV2 Policy](https://cloud.google.com/apigee/api-platform/docs/reference/policies/oauth-v2-policy)** | Gateway Implementation | Native token mint/validate/introspect. Revokes, TTLs, scopes — all declarative in the proxy. |
 
 ---
 
@@ -71,8 +71,8 @@ I needed a focused set: design guidelines I've followed, status codes I actually
 | Tool | Category | My Take |
 |------|----------|---------|
 | **[OpenAPI 3.1](https://spec.openapis.org/oas/v3.1.0)** | Spec Standard | Single source of truth. Generates clients, docs, mocks, tests, gateway config. Don't hand-write — design in Stoplight, export. |
-| **[Stoplight Studio](https://stoplight.io/open-source/studio)** | Visual Editor | Git-backed, real-time linting (Spectral), renders beautifully. Best authoring experience I've found. |
-| **[Spectral](https://meta.stoplight.io/spectral/)** | Linter | Enforce style (naming, required fields, examples) in CI. Extensible rulesets — add your org conventions. |
+| **[Stoplight Studio](https://stoplight.io/studio)** | Visual Editor | Git-backed, real-time linting (Spectral), renders beautifully. Best authoring experience I've found. |
+| **[Spectral](https://stoplight.io/open-source/spectral)** | Linter | Enforce style (naming, required fields, examples) in CI. Extensible rulesets — add your org conventions. |
 | **[Redoc](https://redocly.github.io/redoc/)** | Reference Docs | Three-panel, searchable, code samples in 10+ langs. `redocly preview-docs` = instant local feedback. |
 | **[Postman Collections](https://www.postman.com/)** | Runnable Docs | Share executable examples with non-engineers. `newman run` in CI = contract tests. |
 
@@ -94,10 +94,10 @@ I needed a focused set: design guidelines I've followed, status codes I actually
 
 | Tool | Category | My Take |
 |------|----------|---------|
-| **[Spectral](https://meta.stoplight.io/spectral/)** | Design Governance | Enforce OpenAPI rules (required `examples`, no `anyOf`, proper `error` schemas) in PR checks. |
+| **[Spectral](https://stoplight.io/open-source/spectral)** | Design Governance | Enforce OpenAPI rules (required `examples`, no `anyOf`, proper `error` schemas) in PR checks. |
 | **[OWASP API Security Top 10](https://owasp.org/www-project-api-security/)** | Threat Model | BOLA, broken auth, excessive data exposure — map each to gateway policies (rate limit, field masking, scope checks). |
-| **[Apigee SpikeArrest / Quota](https://cloud.google.com/apigee/docs/reference/policies/spike-arrest-policy)** | Runtime Protection | SpikeArrest = smooth traffic (per-second), Quota = business limits (per-minute/hour/day). Use both. |
-| **[mTLS](https://cloud.google.com/apigee/docs/api-platform/security/mtls)** | Zero-Trust Transport | Service-to-service cert validation. Apigee `TargetEndpoint` `SSLInfo` + KVM certs = no shared secrets. |
+| **[Apigee SpikeArrest / Quota](https://cloud.google.com/apigee/api-platform/docs/reference/policies/spike-arrest-policy)** | Runtime Protection | SpikeArrest = smooth traffic (per-second), Quota = business limits (per-minute/hour/day). Use both. |
+| **[mTLS](https://cloud.google.com/apigee/api-platform/docs/security/mtls)** | Zero-Trust Transport | Service-to-service cert validation. Apigee `TargetEndpoint` `SSLInfo` + KVM certs = no shared secrets. |
 
 ---
 
