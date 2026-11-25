@@ -34,9 +34,9 @@ I needed a focused set: design guidelines I've followed, status codes I actually
 
 | Resource | Category | My Take |
 |----------|----------|---------|
-| **[Google API Design Guide](https://cloud.google.com/apis/design/)** | Enterprise Standard | My north star. Resource-oriented, predictable patterns, versioning via URL. Apigee enforces this by default. |
+| **[Google API Design Guide](https://docs.cloud.google.com/apis/design)** | Enterprise Standard | My north star. Resource-oriented, predictable patterns, versioning via URL. Apigee enforces this by default. |
 | **[Microsoft REST API Guidelines](https://github.com/Microsoft/api-guidelines/blob/master/Guidelines.md)** | Enterprise Standard | Comprehensive. Naming, versioning, pagination, error formats — maps cleanly to OpenAPI. |
-| **[Zalando RESTful API Guidelines](https://zalando.github.io/restful-api-guidelines/)** | Open Standard | Concise, opinionated. Great for teams wanting a lighter baseline than Google/Microsoft. |
+| **[Zalando RESTful API Guidelines](https://opensource.zalando.com/restful-api-guidelines/)** | Open Standard | Concise, opinionated. Great for teams wanting a lighter baseline than Google/Microsoft. |
 | **[Heroku HTTP API Design](https://github.com/interagent/http-api-design)** | Practical Patterns | Battle-tested conventions. Request IDs, ETags, rate-limit headers — the "real world" details. |
 | **[Vinay Sahni's Pragmatic REST](https://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api)** | Quick Reference | One-page checklist. Good for code reviews: plural nouns, proper nesting, verbs in HTTP not URLs. |
 
@@ -46,9 +46,9 @@ I needed a focused set: design guidelines I've followed, status codes I actually
 
 | Resource | Category | My Take |
 |----------|----------|---------|
-| **[HTTP Status Codes Reference](https://httpstatuses.com/)** | Quick Lookup | Clean, searchable. My go-to when I forget 422 vs 400 or 409 vs 412. |
-| **[REST API Tutorial Status Codes](https://www.restapitutorial.com/httpstatuscodes.html)** | Context + Examples | Groups by semantics (success, redirect, client error, server error) with REST-specific guidance. |
-| **[MDN HTTP Status](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)** | Authoritative | Browser-vendor backed. Use when you need the exact RFC wording. |
+| **[HTTP Status Codes Reference](https://www.webfx.com/web-development/glossary/)** | Quick Lookup | Clean, searchable. My go-to when I forget 422 vs 400 or 409 vs 412. |
+| **[REST API Tutorial Status Codes](https://www.restapitutorial.com/httpstatuscodes)** | Context + Examples | Groups by semantics (success, redirect, client error, server error) with REST-specific guidance. |
+| **[MDN HTTP Status](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status)** | Authoritative | Browser-vendor backed. Use when you need the exact RFC wording. |
 
 **Codes I actually return:** `200`, `201`, `204`, `400`, `401`, `403`, `404`, `409`, `422`, `429`, `500`, `503` — the rest are edge cases.
 
@@ -71,7 +71,7 @@ I needed a focused set: design guidelines I've followed, status codes I actually
 | Tool | Category | My Take |
 |------|----------|---------|
 | **[OpenAPI 3.1](https://spec.openapis.org/oas/v3.1.0)** | Spec Standard | Single source of truth. Generates clients, docs, mocks, tests, gateway config. Don't hand-write — design in Stoplight, export. |
-| **[Stoplight Studio](https://stoplight.io/studio)** | Visual Editor | Git-backed, real-time linting (Spectral), renders beautifully. Best authoring experience I've found. |
+| **[Stoplight Studio](https://stoplight.io/solutions)** | Visual Editor | Git-backed, real-time linting (Spectral), renders beautifully. Best authoring experience I've found. |
 | **[Spectral](https://stoplight.io/open-source/spectral)** | Linter | Enforce style (naming, required fields, examples) in CI. Extensible rulesets — add your org conventions. |
 | **[Redoc](https://redocly.github.io/redoc/)** | Reference Docs | Three-panel, searchable, code samples in 10+ langs. `redocly preview-docs` = instant local feedback. |
 | **[Postman Collections](https://www.postman.com/)** | Runnable Docs | Share executable examples with non-engineers. `newman run` in CI = contract tests. |
@@ -95,7 +95,7 @@ I needed a focused set: design guidelines I've followed, status codes I actually
 | Tool | Category | My Take |
 |------|----------|---------|
 | **[Spectral](https://stoplight.io/open-source/spectral)** | Design Governance | Enforce OpenAPI rules (required `examples`, no `anyOf`, proper `error` schemas) in PR checks. |
-| **[OWASP API Security Top 10](https://owasp.org/www-project-api-security/)** | Threat Model | BOLA, broken auth, excessive data exposure — map each to gateway policies (rate limit, field masking, scope checks). |
+| **[OWASP API Security Top 10](https://owasp.org/projects/api-security-project)** | Threat Model | BOLA, broken auth, excessive data exposure — map each to gateway policies (rate limit, field masking, scope checks). |
 | **[Apigee SpikeArrest / Quota](https://cloud.google.com/apigee/api-platform/docs/reference/policies/spike-arrest-policy)** | Runtime Protection | SpikeArrest = smooth traffic (per-second), Quota = business limits (per-minute/hour/day). Use both. |
 | **[mTLS](https://cloud.google.com/apigee/api-platform/docs/security/mtls)** | Zero-Trust Transport | Service-to-service cert validation. Apigee `TargetEndpoint` `SSLInfo` + KVM certs = no shared secrets. |
 
@@ -108,7 +108,7 @@ I needed a focused set: design guidelines I've followed, status codes I actually
 | **[jq](https://stedolan.github.io/jq/)** | JSON Processor | `curl -s $URL | jq '.data[] | select(.status=="active") | .id'` — the universal API data knife. |
 | **[httpie](https://httpie.io/)** | HTTP CLI | `http --print=hb POST $URL token=$TOKEN` — cleaner than curl for headers + body. |
 | **[newman](https://github.com/postmanlabs/newman)** | CI Runner | `newman run collection.json -e env.json --reporters cli,junit` — JUnit XML for any CI. |
-| **[redocly-cli](https://redocly.com/docs/cli/)** | Spec Pipeline | `redocly lint spec.yaml && redocly bundle spec.yaml -o bundle.yaml` — validate + bundle in CI. |
+| **[redocly-cli](https://redocly.com/docs/cli)** | Spec Pipeline | `redocly lint spec.yaml && redocly bundle spec.yaml -o bundle.yaml` — validate + bundle in CI. |
 | **[apigeecli](https://github.com/apigee/apigeecli)** | Apigee Automation | Deploy proxies, manage KVMs, create products — all from terminal. Replaces Maven plugin. |
 
 ---

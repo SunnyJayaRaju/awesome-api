@@ -24,5 +24,7 @@ jobs:
         with:
           # Excluded after a measured run: linkedin.com rate-limits anonymous
           # HEAD/GET (999); localhost and 127.0.0.1 are local-only examples.
-          args: --verbose --no-progress --exclude 'linkedin.com' --exclude 'localhost' --exclude '127.0.0.1' README.md
+          # webfx.com returned an HTTP/2 protocol error in the first CI run although
+          # curl over HTTP/1.1 reached it; excluded until the host is stable.
+          args: --verbose --no-progress --exclude 'linkedin.com' --exclude 'localhost' --exclude '127.0.0.1' --exclude 'webfx.com' README.md
           fail: true
