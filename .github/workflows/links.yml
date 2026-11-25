@@ -1,0 +1,28 @@
+name: links
+
+on:
+  pull_request:
+  schedule:
+    - cron: '0 6 * * 1'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: links-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  links:
+    name: link check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Check README links
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          # Excluded after a measured run: linkedin.com rate-limits anonymous
+          # HEAD/GET (999); localhost and 127.0.0.1 are local-only examples.
+          args: --verbose --no-progress --exclude 'linkedin.com' --exclude 'localhost' --exclude '127.0.0.1' README.md
+          fail: true
