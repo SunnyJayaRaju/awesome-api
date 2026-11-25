@@ -1,10 +1,17 @@
 # 📐 Awesome REST API Design
 
+## At a glance
+
+Personal, opinionated notes on REST API design: resources, patterns, status codes, auth flows and tools I have actually applied. Forked from [Kikobeats/awesome-api](https://github.com/Kikobeats/awesome-api) and maintained as my own curated reference.
+
 ![Status](https://img.shields.io/badge/Status-Active_Curation-brightgreen?style=for-the-badge&logo=github&logoColor=white)
 ![Maintainer](https://img.shields.io/badge/Maintainer-SunnyJayaRaju-orange?style=for-the-badge)
 
-> **Personal, opinionated notes on REST API design — resources, patterns, and tools I've actually applied.**  
-> This started as a fork of [Kikobeats/awesome-api](https://github.com/Kikobeats/awesome-api) — now maintained as my own curated reference.
+```bash
+http GET :8080/api/users Authorization:"Bearer $TOKEN"
+curl -s $URL | jq '.data[] | select(.status=="active") | .id'
+newman run collection.json -e env.json --reporters cli,junit
+```
 
 ---
 
@@ -19,6 +26,8 @@ I needed a focused set: design guidelines I've followed, status codes I actually
 
 ## 🗂️ Table of Contents
 
+- [At a glance](#at-a-glance)
+- [🎯 Why This Exists](#-why-this-exists)
 - [📋 Design Principles & Guidelines](#-design-principles--guidelines)
 - [🔢 HTTP Status Codes](#-http-status-codes)
 - [🔐 Authentication & Authorization](#-authentication--authorization)
@@ -27,6 +36,9 @@ I needed a focused set: design guidelines I've followed, status codes I actually
 - [🛡️ Security & Governance](#%EF%B8%8F-security--governance)
 - [⚙️ CLI & Automation](#%EF%B8%8F-cli--automation)
 - [🔗 Connected Repos](#-connected-repos)
+- [🧭 How I Evaluate Resources](#-how-i-evaluate-resources)
+- [📝 Changelog](#-changelog)
+- [🙏 Attribution](#-attribution)
 
 ---
 
@@ -106,10 +118,20 @@ I needed a focused set: design guidelines I've followed, status codes I actually
 | Tool | Category | My Take |
 |------|----------|---------|
 | **[jq](https://stedolan.github.io/jq/)** | JSON Processor | `curl -s $URL | jq '.data[] | select(.status=="active") | .id'` — the universal API data knife. |
-| **[httpie](https://httpie.io/)** | HTTP CLI | `http --print=hb POST $URL token=$TOKEN` — cleaner than curl for headers + body. |
+| **[HTTPie](https://httpie.io/)** | HTTP CLI | `http --print=hb POST $URL token=$TOKEN` — cleaner than curl for headers + body. |
 | **[newman](https://github.com/postmanlabs/newman)** | CI Runner | `newman run collection.json -e env.json --reporters cli,junit` — JUnit XML for any CI. |
 | **[redocly-cli](https://redocly.com/docs/cli)** | Spec Pipeline | `redocly lint spec.yaml && redocly bundle spec.yaml -o bundle.yaml` — validate + bundle in CI. |
 | **[apigeecli](https://github.com/apigee/apigeecli)** | Apigee Automation | Deploy proxies, manage KVMs, create products — all from terminal. Replaces Maven plugin. |
+
+Verified locally with sample input:
+
+```bash
+printf '{"data":[{"id":1,"status":"active"},{"id":2,"status":"idle"}]}' | jq '.data[] | select(.status=="active") | .id'
+```
+
+```text
+1
+```
 
 ---
 
