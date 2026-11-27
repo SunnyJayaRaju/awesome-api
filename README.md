@@ -1,23 +1,19 @@
 # 📐 Awesome REST API Design
 
-## At a glance
+## 📌 At A Glance
 
 Personal, opinionated notes on REST API design: resources, patterns, status codes, auth flows and tools I have actually applied. Forked from [Kikobeats/awesome-api](https://github.com/Kikobeats/awesome-api) and maintained as my own curated reference.
 
-![Status](https://img.shields.io/badge/Status-Active_Curation-brightgreen?style=for-the-badge&logo=github&logoColor=white)
-![Maintainer](https://img.shields.io/badge/Maintainer-SunnyJayaRaju-orange?style=for-the-badge)
-
-```bash
-http GET :8080/api/users Authorization:"Bearer $TOKEN"
-curl -s $URL | jq '.data[] | select(.status=="active") | .id'
-newman run collection.json -e env.json --reporters cli,junit
-```
+<p align="center">
+  <a href="https://github.com/SunnyJayaRaju/awesome-api"><img alt="Status: Active Curation" src="https://img.shields.io/badge/Status-Active_Curation-brightgreen?style=flat-square&logo=github&logoColor=white" /></a>
+  <a href="https://github.com/SunnyJayaRaju"><img alt="Maintainer: SunnyJayaRaju" src="https://img.shields.io/badge/Maintainer-SunnyJayaRaju-orange?style=flat-square" /></a>
+</p>
 
 ---
 
 ## 🎯 Why This Exists
 
-The original list is a broad directory of everything API-related. That's great for browsing, not for daily decisions.  
+The original list is a broad directory of everything API-related. That's great for browsing, not for daily decisions.<br />
 I needed a focused set: design guidelines I've followed, status codes I actually return, auth flows I've implemented, tools I reach for.
 
 > **"If I've written it, reviewed it, or debugged it in prod, it's here. If not, it's not."**
@@ -26,19 +22,19 @@ I needed a focused set: design guidelines I've followed, status codes I actually
 
 ## 🗂️ Table of Contents
 
-- [At a glance](#at-a-glance)
-- [🎯 Why This Exists](#-why-this-exists)
-- [📋 Design Principles & Guidelines](#-design-principles--guidelines)
-- [🔢 HTTP Status Codes](#-http-status-codes)
-- [🔐 Authentication & Authorization](#-authentication--authorization)
-- [📝 Specification & Documentation](#-specification--documentation)
-- [🧪 Testing & Debugging](#-testing--debugging)
-- [🛡️ Security & Governance](#%EF%B8%8F-security--governance)
-- [⚙️ CLI & Automation](#%EF%B8%8F-cli--automation)
-- [🔗 Connected Repos](#-connected-repos)
-- [🧭 How I Evaluate Resources](#-how-i-evaluate-resources)
-- [📝 Changelog](#-changelog)
-- [🙏 Attribution](#-attribution)
+- [At A Glance](#-at-a-glance)
+- [Why This Exists](#-why-this-exists)
+- [Design Principles & Guidelines](#-design-principles--guidelines)
+- [HTTP Status Codes](#-http-status-codes)
+- [Authentication & Authorization](#-authentication--authorization)
+- [Specification & Documentation](#-specification--documentation)
+- [Testing & Debugging](#-testing--debugging)
+- [Security & Governance](#%EF%B8%8F-security--governance)
+- [CLI & Automation](#%EF%B8%8F-cli--automation)
+- [Connected Repos](#-connected-repos)
+- [How I Evaluate Resources](#-how-i-evaluate-resources)
+- [Changelog](#-changelog)
+- [Attribution](#-attribution)
 
 ---
 
@@ -165,7 +161,7 @@ This list lives alongside my hands-on work:
 
 ## 🙏 Attribution
 
-Original list © 2016+ [Kikobeats](https://github.com/Kikobeats) (MIT).  
+Original list © 2016+ [Kikobeats](https://github.com/Kikobeats) (MIT).<br />
 This curated version © 2026 [SunnyJayaRaju](https://github.com/SunnyJayaRaju) — same license, new voice.
 
 > *Curated with 🧠 by someone who learns by breaking things in staging first.*
